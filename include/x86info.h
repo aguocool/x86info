@@ -88,6 +88,7 @@ struct cpudata {
 	enum connector connector;
 	unsigned int flags_ecx;
 	unsigned int flags_edx;
+	unsigned int eflags_ebx;
 	unsigned int eflags_ecx;
 	unsigned int eflags_edx;
 	unsigned int MHz;
@@ -208,7 +209,7 @@ extern unsigned int show_addr_sizes;
 extern unsigned int all_cpus;
 extern unsigned int debug;
 extern unsigned int verbose;
-
+extern unsigned int show_hypervisor_mode;
 #define X86_FEATURE_HT		(1<<28)
 #define X86_FEATURE_MTRR	(1<<12)
 #define X86_FEATURE_APIC	(1<<9)
