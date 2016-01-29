@@ -25,7 +25,7 @@ static void flag_decode(unsigned long reg, const char * reg_desc, const char *fl
 			    if (flags[i])
 				    printf(" %s", flags[i]);
 			    else{//this will output the register & unrecognized bit 
-				    if(strcmp(reg_desc,"1:ecx")&(i==31))
+				    if(!strcmp(reg_desc,"1:ecx")&(i==31))
 					has_hypervisor = 1;			
 				    else
 					printf(" [%s:%u]", reg_desc, i);
@@ -33,8 +33,12 @@ static void flag_decode(unsigned long reg, const char * reg_desc, const char *fl
 			} else {
 			    if (flags[i])
 				    printf(" %-8s", flags[i]);
-			    else
-				    printf(" [%s:%u]     ", reg_desc, i);
+			    else{
+				    if(!strcmp(reg_desc,"1:ecx")&(i==31))
+                                        has_hypervisor = 1;
+                                    else
+				    	printf(" [%s:%u]", reg_desc, i);
+				}
 			    if (flags_desc)
 				    printf("\t%s\n", flags_desc[i]);
 			    else
